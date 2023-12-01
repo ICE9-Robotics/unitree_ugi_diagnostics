@@ -3,19 +3,15 @@
   <name>unitree_diagnostics</name>
   <version>1.0.0</version>
   <description>
-    ROS package supporting EMLID Reach series GPS devices.
-    Parses NMEA strings from EMLID Reach devices and publishes topics including NMEA messages,
-    NavSatFix, TimeReference and Twist.
+    Publishes diagnostics information such as battery, velocity and gps quality. This package works specifically for ice9_ugi package. 
   </description>
-  <url>https://github.com/tmxkn1/emlid_reach_ros</url>
 
   <author email="anthony.jiang.github@outlook.com">Zhengyi Jiang</author>
   <maintainer email="anthony.jiang.github@outlook.com">Zhengyi Jiang</maintainer>
-  <license>BSD</license>
+  <license>TODO</license>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
-  <build_depend>serial</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>sensor_msgs</build_depend>
   <build_depend>nmea_msgs</build_depend>
@@ -23,7 +19,6 @@
   <build_depend>unitree_diagnostics_msgs</build_depend>
 
   <run_depend>roscpp</run_depend>
-  <run_depend>serial</run_depend>
   <run_depend>geometry_msgs</run_depend>
   <run_depend>sensor_msgs</run_depend>
   <run_depend>nmea_msgs</run_depend>

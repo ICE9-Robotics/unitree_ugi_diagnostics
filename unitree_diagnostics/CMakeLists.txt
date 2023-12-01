@@ -3,7 +3,6 @@ project(unitree_diagnostics VERSION 0.1)
 
 set(${PROJECT_NAME}_CATKIN_DEPS
     roscpp
-    serial
     sensor_msgs
     geometry_msgs
     nmea_msgs

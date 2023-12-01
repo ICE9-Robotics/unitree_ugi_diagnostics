@@ -4,7 +4,6 @@
 #include <string>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/NavSatFix.h>
-// #include <nav_msgs/Odometry.h>
 #include <nmea_msgs/Gpgga.h>
 #include <unitree_legged_msgs/HighState.h>
 
@@ -21,12 +20,10 @@ namespace unitree_diagnostics
         ros::Time gpggaTs;
         double cmdVelocity;
         double cmdYawSpeed;
-        ros::Time cmdVelTs;
         int batterySoc;
         ros::Time highStateTs;
         float odomVelocity;
         double odomYawSpeed;
-        // double odomTs;
     };
 
     class Diagnostics
@@ -40,7 +37,6 @@ namespace unitree_diagnostics
         ros::Subscriber gpggaSub;
         ros::Subscriber highStateSub;
         ros::Subscriber cmdVelSub;
-        // ros::Subscriber odomSub;
 
         ros::Publisher diagnosticsPub;
         ros::Timer periodicUpdateTimer_;
@@ -53,7 +49,6 @@ namespace unitree_diagnostics
         void gpggaCallback(const nmea_msgs::Gpgga::ConstPtr &msg);
         void highStateCallback(const unitree_legged_msgs::HighState::ConstPtr &msg);
         void cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg);
-        // void odomCallback(const nav_msgs::Odometry::ConstPtr &msg);
 
         void periodicUpdate(const ros::TimerEvent& event);
 

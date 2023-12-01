@@ -55,12 +55,12 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
     msg.commandYawSpeed = info.cmdYawSpeed;
     msg.velocity = info.odomVelocity;
     msg.yawSpeed = info.odomYawSpeed;
-    msg.highStateTimestamp = info.highStateTs.toSec();
+    msg.highStateTimestamp = info.highStateTs;
 
 
     if (info.gpggaTs.isValid() && !info.gpggaTs.isZero())
     {
-        msg.gpsStatusTimestamp = info.gpggaTs.toSec();
+        msg.gpsStatusTimestamp = info.gpggaTs;
         if (info.gpggaGpsStatus == 0)
         {
             msg.gpsStatusDescription = "No fix";
@@ -92,7 +92,7 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
     }
     else
     {
-        msg.gpsStatusTimestamp = info.navSatFixTs.toSec();
+        msg.gpsStatusTimestamp = info.navSatFixTs;
         if (info.navSatFixGpsStatus == -1)
         {
             msg.gpsStatusDescription = "No fix";
