@@ -50,6 +50,7 @@ void Diagnostics::cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
 void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
 {
     unitree_diagnostics_msgs::Diagnostics msg;
+    msg.header.stamp = ros::Time::now();
     msg.batterySoC = info.batterySoc;
     msg.commandVelocity = info.cmdVelocity;
     msg.commandYawSpeed = info.cmdYawSpeed;
