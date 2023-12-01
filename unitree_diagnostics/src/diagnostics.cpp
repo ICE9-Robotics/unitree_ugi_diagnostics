@@ -10,8 +10,8 @@ Diagnostics::Diagnostics(ros::NodeHandle nh, ros::NodeHandle nh_priv)
 
     navSatFixSub = nh.subscribe("fix", 10, &Diagnostics::navSatFixCallback, this);
     gpggaSub = nh.subscribe("nmea/gpgga", 10, &Diagnostics::gpggaCallback, this);
-    highStateSub = nh.subscribe("high_state", 10, &Diagnostics::gpggaCallback, this);
-    cmdVelSub = nh.subscribe("cmd_vel", 10, &Diagnostics::gpggaCallback, this);
+    highStateSub = nh.subscribe("high_state", 10, &Diagnostics::highStateCallback, this);
+    cmdVelSub = nh.subscribe("cmd_vel", 10, &Diagnostics::cmdVelCallback, this);
 
     diagnosticsPub = nh.advertise<unitree_diagnostics_msgs::Diagnostics>("diagnostics", 10);
 
