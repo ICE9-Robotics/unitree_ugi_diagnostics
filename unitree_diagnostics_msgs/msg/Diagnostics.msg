@@ -5,5 +5,5 @@ float32 velocity
 float32 yawSpeed
 float32 commandVelocity
 float32 commandYawSpeed
-float32 highStateAge
-float32 gpsStatusAge
+float32 highStateTimestamp
+float32 gpsStatusTimestamp

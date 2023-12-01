@@ -50,18 +50,17 @@ void Diagnostics::cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
 void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
 {
     unitree_diagnostics_msgs::Diagnostics msg;
-    ros::Time time = ros::Time::now();
     msg.batterySoC = info.batterySoc;
     msg.commandVelocity = info.cmdVelocity;
     msg.commandYawSpeed = info.cmdYawSpeed;
     msg.velocity = info.odomVelocity;
     msg.yawSpeed = info.odomYawSpeed;
-    msg.highStateAge = (time - info.highStateTs).toSec();
+    msg.highStateTimestamp = info.highStateTs.toSec();
 
 
     if (info.gpggaTs.isValid() && !info.gpggaTs.isZero())
     {
-        msg.gpsStatusAge = (time - info.gpggaTs).toSec();
+        msg.gpsStatusTimestamp = info.gpggaTs.toSec();
         if (info.gpggaGpsStatus == 0)
         {
             msg.gpsStatusDescription = "No fix";
@@ -93,7 +92,7 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
     }
     else
     {
-        msg.gpsStatusAge = (time - info.navSatFixTs).toSec();
+        msg.gpsStatusTimestamp = info.navSatFixTs.toSec();
         if (info.navSatFixGpsStatus == -1)
         {
             msg.gpsStatusDescription = "No fix";
