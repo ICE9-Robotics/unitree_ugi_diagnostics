@@ -80,7 +80,7 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
         }
         else if (info.gpggaGpsStatus == 5)
         {
-            msg.gpsStatusDescription = "RTK floating";
+            msg.gpsStatusDescription = "RTK float";
         }
         else if (info.gpggaGpsStatus == 6)
         {
@@ -108,7 +108,7 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
         }
         else if (info.navSatFixGpsStatus == 2)
         {
-            msg.gpsStatusDescription = "RTK fixed/floating";
+            msg.gpsStatusDescription = "RTK fixed/float";
         }
     }
     diagnosticsPub.publish(msg);
