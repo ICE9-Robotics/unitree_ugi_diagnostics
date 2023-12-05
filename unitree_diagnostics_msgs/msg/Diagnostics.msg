@@ -5,5 +5,6 @@ float32 velocity
 float32 yawSpeed
 float32 commandVelocity
 float32 commandYawSpeed
+uint8 mode
 time highStateTimestamp
 time gpsStatusTimestamp

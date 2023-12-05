@@ -39,6 +39,7 @@ void Diagnostics::highStateCallback(const unitree_legged_msgs::HighState::ConstP
     info.odomVelocity = sqrt(pow(msg->velocity[0], 2) + pow(msg->velocity[1], 2) + pow(msg->velocity[2], 2));
     info.odomYawSpeed = msg->yawSpeed;
     info.highStateTs = msg->header.stamp;
+    info.mode = msg->mode;
 }
 
 void Diagnostics::cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
@@ -57,6 +58,7 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
     msg.velocity = info.odomVelocity;
     msg.yawSpeed = info.odomYawSpeed;
     msg.highStateTimestamp = info.highStateTs;
+    msg.mode = info.mode;
 
 
     if (info.gpggaTs.isValid() && !info.gpggaTs.isZero())

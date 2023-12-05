@@ -24,6 +24,7 @@ namespace unitree_diagnostics
         ros::Time highStateTs;
         float odomVelocity;
         double odomYawSpeed;
+        int mode;
     };
 
     class Diagnostics
