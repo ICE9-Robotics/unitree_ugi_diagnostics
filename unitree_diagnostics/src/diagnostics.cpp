@@ -10,8 +10,10 @@ Diagnostics::Diagnostics(ros::NodeHandle nh, ros::NodeHandle nh_priv)
 
     navSatFixSub = nh.subscribe("fix", 10, &Diagnostics::navSatFixCallback, this);
     gpggaSub = nh.subscribe("nmea/gpgga", 10, &Diagnostics::gpggaCallback, this);
+    gpsVel = nh.subscribe("reach/vel", 10, &Diagnostics::gpsVelCallback, this);
     highStateSub = nh.subscribe("high_state", 10, &Diagnostics::highStateCallback, this);
     cmdVelSub = nh.subscribe("cmd_vel", 10, &Diagnostics::cmdVelCallback, this);
+    vfrSub = nh.subscribe("mavros/vfr_hud", 10, &Diagnostics::vfrCallback, this);
 
     diagnosticsPub = nh.advertise<unitree_diagnostics_msgs::Diagnostics>("diagnostics", 10);
 
@@ -33,6 +35,11 @@ void Diagnostics::gpggaCallback(const nmea_msgs::Gpgga::ConstPtr &msg)
     info.gpggaTs = msg->header.stamp;
 }
 
+void Diagnostics::gpsvelCallback(const geometry_msgs::Twist::ConstPtr &msg)
+{
+    info.gpsVelocity = sqrt(pow(msg->linear.x, 2) + pow(msg->linear.y, 2) + pow(msg->linear.z, 2));
+}
+
 void Diagnostics::highStateCallback(const unitree_legged_msgs::HighState::ConstPtr &msg)
 {
     info.batterySoc = msg->bms.SOC;
@@ -46,6 +53,11 @@ void Diagnostics::cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
 {
     info.cmdVelocity = sqrt(pow(msg->linear.x, 2) + pow(msg->linear.y, 2) + pow(msg->linear.z, 2));
     info.cmdYawSpeed = msg->angular.z;
+}
+
+void Diagnostics::vfrCallback(const mavros_msgs::VFR_HUD::ConstPtr &msg)
+{
+    info.heading = msg->heading;
 }
 
 void Diagnostics::periodicUpdate(const ros::TimerEvent& event)

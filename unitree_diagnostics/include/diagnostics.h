@@ -6,6 +6,7 @@
 #include <sensor_msgs/NavSatFix.h>
 #include <nmea_msgs/Gpgga.h>
 #include <unitree_legged_msgs/HighState.h>
+#include <mavros_msgs/VFR_HUD.h>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ namespace unitree_diagnostics
         int navSatFixGpsStatus = -1;
         ros::Time navSatFixTs;
         int gpggaGpsStatus;
+        double gpsVelocity;
         ros::Time gpggaTs;
         double cmdVelocity;
         double cmdYawSpeed;
@@ -24,6 +26,7 @@ namespace unitree_diagnostics
         ros::Time highStateTs;
         float odomVelocity;
         double odomYawSpeed;
+        double heading;
         int mode;
     };
 
@@ -36,8 +39,10 @@ namespace unitree_diagnostics
         ros::NodeHandle node;
         ros::Subscriber navSatFixSub;
         ros::Subscriber gpggaSub;
+        ros::Subscriber reachVelSub;
         ros::Subscriber highStateSub;
         ros::Subscriber cmdVelSub;
+        ros::Subscriber vfrSub
 
         ros::Publisher diagnosticsPub;
         ros::Timer periodicUpdateTimer_;
@@ -48,8 +53,10 @@ namespace unitree_diagnostics
 
         void navSatFixCallback(const sensor_msgs::NavSatFix::ConstPtr &msg);
         void gpggaCallback(const nmea_msgs::Gpgga::ConstPtr &msg);
+        void gpsvelCallback(const geometry_msgs::Twist::ConstPtr &msg);
         void highStateCallback(const unitree_legged_msgs::HighState::ConstPtr &msg);
         void cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg);
+        void vfrCallback(const mavros_msgs::VFR_HUD::ConstPtr &msg);
 
         void periodicUpdate(const ros::TimerEvent& event);
 
