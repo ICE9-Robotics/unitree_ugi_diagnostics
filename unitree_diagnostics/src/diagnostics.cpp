@@ -10,7 +10,7 @@ Diagnostics::Diagnostics(ros::NodeHandle nh, ros::NodeHandle nh_priv)
 
     navSatFixSub = nh.subscribe("fix", 10, &Diagnostics::navSatFixCallback, this);
     gpggaSub = nh.subscribe("nmea/gpgga", 10, &Diagnostics::gpggaCallback, this);
-    gpsVel = nh.subscribe("reach/vel", 10, &Diagnostics::gpsVelCallback, this);
+    gpsVelSub = nh.subscribe("reach/vel", 10, &Diagnostics::gpsVelCallback, this);
     highStateSub = nh.subscribe("high_state", 10, &Diagnostics::highStateCallback, this);
     cmdVelSub = nh.subscribe("cmd_vel", 10, &Diagnostics::cmdVelCallback, this);
     vfrSub = nh.subscribe("mavros/vfr_hud", 10, &Diagnostics::vfrCallback, this);
@@ -35,7 +35,7 @@ void Diagnostics::gpggaCallback(const nmea_msgs::Gpgga::ConstPtr &msg)
     info.gpggaTs = msg->header.stamp;
 }
 
-void Diagnostics::gpsvelCallback(const geometry_msgs::Twist::ConstPtr &msg)
+void Diagnostics::gpsVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
 {
     info.gpsVelocity = sqrt(pow(msg->linear.x, 2) + pow(msg->linear.y, 2) + pow(msg->linear.z, 2));
 }
