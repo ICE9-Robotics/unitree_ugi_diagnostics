@@ -66,10 +66,12 @@ void Diagnostics::periodicUpdate(const ros::TimerEvent& event)
     msg.header.stamp = ros::Time::now();
     msg.batterySoC = info.batterySoc;
     msg.commandVelocity = info.cmdVelocity;
+    msg.gpsVelocity = info.gpsVelocity;
     msg.commandYawSpeed = info.cmdYawSpeed;
     msg.velocity = info.odomVelocity;
     msg.yawSpeed = info.odomYawSpeed;
     msg.highStateTimestamp = info.highStateTs;
+    msg.heading = info.heading;
     msg.mode = info.mode;
 
 
