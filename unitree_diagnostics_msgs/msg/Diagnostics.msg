@@ -1,8 +1,10 @@
 Header header
 float32 batterySoC
 string gpsStatusDescription
+float32 gpsVelocity
 float32 velocity
 float32 yawSpeed
+float32 heading
 float32 commandVelocity
 float32 commandYawSpeed
 uint8 mode
