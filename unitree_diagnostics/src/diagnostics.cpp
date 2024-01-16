@@ -15,7 +15,7 @@ Diagnostics::Diagnostics(ros::NodeHandle nh, ros::NodeHandle nh_priv)
     cmdVelSub = nh.subscribe("cmd_vel", 10, &Diagnostics::cmdVelCallback, this);
     vfrSub = nh.subscribe("mavros/vfr_hud", 10, &Diagnostics::vfrCallback, this);
 
-    diagnosticsPub = nh.advertise<unitree_diagnostics_msgs::Diagnostics>("diagnostics", 10);
+    diagnosticsPub = nh.advertise<unitree_diagnostics_msgs::Diagnostics>("unitree/diagnostics", 10);
 
     periodicUpdateTimer_ = nh.createTimer(ros::Duration(1./frequency), &Diagnostics::periodicUpdate, this);
 }
